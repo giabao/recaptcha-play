@@ -1,0 +1,1 @@
+# Google recaptcha v2 for play-framework 2.4+

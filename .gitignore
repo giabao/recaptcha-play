@@ -1,0 +1,9 @@
+/target
+/.settings
+/.cache
+/.classpath
+/.project
+/logs
+/.idea
+/project/target
+/project/project

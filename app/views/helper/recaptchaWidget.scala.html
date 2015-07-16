@@ -1,0 +1,21 @@
+@import com.sandinh.recaptcha.ReCaptcha
+
+@****************************************************************************************
+ * Low-level API: Renders a Google Recaptcha Widget, independent of the Play Forms API.
+ * ex: @recaptchaWidget('data_tabindex = 1,..)
+ ****************************************************************************************@
+@(args: (Symbol,Any)*)(implicit request: RequestHeader, messages: Messages, reCaptcha: ReCaptcha)
+
+@htmlArgs = @{Html(args.map {
+    case (s, None) => s.name.replace("_", "-")
+    case (s, v) => s.name.replace("_", "-") + "=\"" + HtmlFormat.escape(v.toString).body + "\""
+  }.mkString(" "))
+}
+
+<script src="https://www.google.com/recaptcha/api.js?hl=@reCaptcha.getPreferredLanguage" async defer></script>
+
+<div class="g-recaptcha" data-sitekey="@reCaptcha.config.publicKey"
+    data-theme="@reCaptcha.config.theme"
+    data-type="@reCaptcha.config.tpe"
+    data-size="@reCaptcha.config.size"
+    @htmlArgs></div>
